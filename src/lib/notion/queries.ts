@@ -10,24 +10,30 @@ export async function getAllPosts(): Promise<BlogPost[]> {
   }
 
   try {
-    const response = await notion.databases.query({
-      database_id: DATABASE_ID,
+    // Use search API to query database items
+    const response = await notion.search({
       filter: {
-        property: "Published",
-        checkbox: {
-          equals: true,
-        },
+        property: "object",
+        value: "page",
       },
-      sorts: [
-        {
-          property: "Published Date",
-          direction: "descending",
-        },
-      ],
+      sort: {
+        direction: "descending",
+        timestamp: "last_edited_time",
+      },
+    })
+
+    // Filter pages that belong to our database and are published
+    const databasePages = response.results.filter((page: any) => {
+      return (
+        page.object === "page" &&
+        page.parent?.type === "database_id" &&
+        page.parent?.database_id === DATABASE_ID &&
+        page.properties?.Published?.checkbox === true
+      )
     })
 
     const posts = await Promise.all(
-      response.results.map(async (page: any) => {
+      databasePages.map(async (page: any) => {
         const mdBlocks = await n2m.pageToMarkdown(page.id)
         const content = n2m.toMarkdownString(mdBlocks)
 
@@ -45,7 +51,10 @@ export async function getAllPosts(): Promise<BlogPost[]> {
       })
     )
 
-    return posts
+    // Sort by published date
+    return posts.sort((a, b) => {
+      return new Date(b.publishedDate).getTime() - new Date(a.publishedDate).getTime()
+    })
   } catch (error) {
     console.error("Error fetching posts from Notion:", error)
     return []
@@ -59,31 +68,29 @@ export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
   }
 
   try {
-    const response = await notion.databases.query({
-      database_id: DATABASE_ID,
+    // Search for the specific page
+    const response = await notion.search({
       filter: {
-        and: [
-          {
-            property: "Published",
-            checkbox: {
-              equals: true,
-            },
-          },
-          {
-            property: "Slug",
-            rich_text: {
-              equals: slug,
-            },
-          },
-        ],
+        property: "object",
+        value: "page",
       },
     })
 
-    if (response.results.length === 0) {
+    // Find the page with matching slug in our database
+    const page: any = response.results.find((p: any) => {
+      return (
+        p.object === "page" &&
+        p.parent?.type === "database_id" &&
+        p.parent?.database_id === DATABASE_ID &&
+        p.properties?.Published?.checkbox === true &&
+        p.properties?.Slug?.rich_text?.[0]?.plain_text === slug
+      )
+    })
+
+    if (!page) {
       return null
     }
 
-    const page: any = response.results[0]
     const mdBlocks = await n2m.pageToMarkdown(page.id)
     const content = n2m.toMarkdownString(mdBlocks)
 
@@ -111,23 +118,29 @@ export async function getPostMetadata(): Promise<BlogPostMetadata[]> {
   }
 
   try {
-    const response = await notion.databases.query({
-      database_id: DATABASE_ID,
+    // Use search API to query database items
+    const response = await notion.search({
       filter: {
-        property: "Published",
-        checkbox: {
-          equals: true,
-        },
+        property: "object",
+        value: "page",
       },
-      sorts: [
-        {
-          property: "Published Date",
-          direction: "descending",
-        },
-      ],
+      sort: {
+        direction: "descending",
+        timestamp: "last_edited_time",
+      },
     })
 
-    return response.results.map((page: any) => ({
+    // Filter pages that belong to our database and are published
+    const databasePages = response.results.filter((page: any) => {
+      return (
+        page.object === "page" &&
+        page.parent?.type === "database_id" &&
+        page.parent?.database_id === DATABASE_ID &&
+        page.properties?.Published?.checkbox === true
+      )
+    })
+
+    const metadata = databasePages.map((page: any) => ({
       id: page.id,
       slug: page.properties.Slug?.rich_text?.[0]?.plain_text || "",
       title: page.properties.Title?.title?.[0]?.plain_text || "",
@@ -136,6 +149,11 @@ export async function getPostMetadata(): Promise<BlogPostMetadata[]> {
       publishedDate: page.properties["Published Date"]?.date?.start || "",
       tags: page.properties.Tags?.multi_select?.map((tag: any) => tag.name) || [],
     })) as BlogPostMetadata[]
+
+    // Sort by published date
+    return metadata.sort((a, b) => {
+      return new Date(b.publishedDate).getTime() - new Date(a.publishedDate).getTime()
+    })
   } catch (error) {
     console.error("Error fetching post metadata from Notion:", error)
     return []
