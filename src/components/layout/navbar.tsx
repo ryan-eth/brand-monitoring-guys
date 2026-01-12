@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { Menu, Shield, ChevronDown } from "lucide-react"
+import { Menu, ChevronDown } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
@@ -15,13 +15,12 @@ export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-transparent">
-      <div className="container mx-auto px-6 lg:px-8">
-        <div className="flex h-20 items-center justify-between">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-sm border-b border-white/5">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex h-16 sm:h-20 items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-3">
-            <Shield className="h-7 w-7 text-white" strokeWidth={1.5} />
-            <span className="text-lg font-normal tracking-wide text-white">
+          <Link href="/" className="flex items-center">
+            <span className="text-lg sm:text-xl font-normal tracking-wide text-white font-serif">
               Brand Monitoring Guys
             </span>
           </Link>

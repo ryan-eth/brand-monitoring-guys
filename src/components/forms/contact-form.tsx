@@ -78,15 +78,15 @@ export function ContactForm() {
   }
 
   return (
-    <Card className="w-full max-w-2xl mx-auto">
-      <CardHeader>
-        <CardTitle>Get in Touch</CardTitle>
-        <CardDescription>
+    <Card className="w-full max-w-2xl mx-auto bg-zinc-950/50 border-white/10">
+      <CardHeader className="space-y-2 pb-4 sm:pb-6">
+        <CardTitle className="text-xl sm:text-2xl text-white">Get in Touch</CardTitle>
+        <CardDescription className="text-sm sm:text-base text-white/60">
           Fill out the form below and we&apos;ll get back to you within 24 hours.
         </CardDescription>
       </CardHeader>
-      <CardContent>
-        <form onSubmit={handleSubmit} className="space-y-4">
+      <CardContent className="pt-0">
+        <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4">
           <div className="space-y-2">
             <label htmlFor="name" className="text-sm font-medium">
               Name *
@@ -150,7 +150,7 @@ export function ContactForm() {
 
           <Button
             type="submit"
-            className="w-full bg-brand-purple-500 hover:bg-brand-purple-600"
+            className="w-full bg-brand-purple-500 hover:bg-brand-purple-600 text-white py-5 sm:py-6 text-base"
             disabled={isLoading}
           >
             {isLoading ? "Sending..." : "Send Message"}
