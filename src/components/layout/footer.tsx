@@ -10,7 +10,7 @@ export function Footer() {
           {/* Brand */}
           <div className="space-y-3 sm:space-y-4">
             <Link href="/" className="flex items-center">
-              <span className="text-base sm:text-lg font-light font-serif text-white">
+              <span className="text-base sm:text-lg text-white font-serif" style={{ fontWeight: 300 }}>
                 Brand Monitoring Guys
               </span>
             </Link>
