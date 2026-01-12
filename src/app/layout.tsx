@@ -10,7 +10,7 @@ const inter = Inter({
 
 const inriaSerif = Inria_Serif({
   subsets: ["latin"],
-  weight: ["400", "700"],
+  weight: ["300", "400", "700"],
   variable: "--font-inria-serif",
 })
 
