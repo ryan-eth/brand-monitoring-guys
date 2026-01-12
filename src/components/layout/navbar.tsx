@@ -20,7 +20,7 @@ export function Navbar() {
         <div className="flex h-16 sm:h-20 items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center">
-            <span className="text-lg sm:text-xl text-white font-serif" style={{ fontWeight: 300 }}>
+            <span className="text-lg sm:text-xl text-white font-serif" style={{ fontWeight: 300, letterSpacing: '0.02em' }}>
               Brand Monitoring Guys
             </span>
           </Link>
