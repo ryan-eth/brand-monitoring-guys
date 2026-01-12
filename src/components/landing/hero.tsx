@@ -23,14 +23,6 @@ export function Hero() {
         <div className="absolute bottom-0 left-0 right-0 h-[35%] bg-gradient-to-t from-[#0d0b1a] via-[#0a0612]/40 to-transparent" />
       </div>
 
-      {/* Decorative stars on the right side - hidden on mobile */}
-      <div className="hidden lg:flex absolute right-[15%] top-[35%] flex-col gap-8 opacity-60">
-        <div className="w-2 h-2 bg-white rounded-full animate-pulse" style={{ animationDelay: '0s', animationDuration: '3s' }} />
-        <div className="w-2 h-2 bg-white rounded-full animate-pulse" style={{ animationDelay: '0.5s', animationDuration: '3s' }} />
-        <div className="w-2 h-2 bg-white rounded-full animate-pulse" style={{ animationDelay: '1s', animationDuration: '3s' }} />
-        <div className="w-2 h-2 bg-white rounded-full animate-pulse" style={{ animationDelay: '1.5s', animationDuration: '3s' }} />
-      </div>
-
       <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8 flex-1 flex flex-col justify-between py-16 sm:py-20 lg:py-24">
         {/* Main content */}
         <div className="max-w-6xl pt-4 sm:pt-8">

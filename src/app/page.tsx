@@ -1,4 +1,6 @@
 import { Hero } from "@/components/landing/hero"
+import { ProblemSection } from "@/components/landing/problem-section"
+import { IncidentProcessSection } from "@/components/landing/incident-process-section"
 import { Navbar } from "@/components/layout/navbar"
 import { Footer } from "@/components/layout/footer"
 import { ContactForm } from "@/components/forms/contact-form"
@@ -9,6 +11,8 @@ export default function Home() {
       <Navbar />
       <main>
         <Hero />
+        <ProblemSection />
+        <IncidentProcessSection />
 
         {/* Contact Section */}
         <section id="contact" className="py-16 sm:py-20 md:py-24 bg-black border-t border-white/5">
