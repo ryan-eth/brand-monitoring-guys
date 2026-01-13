@@ -16,11 +16,11 @@ export function Hero() {
     <section className="relative min-h-screen flex flex-col overflow-hidden bg-black">
       {/* Background gradient layers */}
       <div className="absolute inset-0">
-        {/* Subtle red alert glow on the right */}
-        <div className="absolute top-[40%] right-[20%] w-[800px] h-[800px] rounded-full bg-red-950/8 blur-[120px]" />
+        {/* Subtle purple radial glow on the right */}
+        <div className="absolute top-[40%] right-[20%] w-[800px] h-[800px] rounded-full bg-purple-900/8 blur-[120px]" />
 
-        {/* Bottom gradient - dark fade */}
-        <div className="absolute bottom-0 left-0 right-0 h-[35%] bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/40 to-transparent" />
+        {/* Bottom gradient - purple/navy fade, tighter to bottom */}
+        <div className="absolute bottom-0 left-0 right-0 h-[35%] bg-gradient-to-t from-[#0d0b1a] via-[#0a0612]/40 to-transparent" />
       </div>
 
       <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8 flex-1 flex flex-col justify-between py-16 sm:py-20 lg:py-24">
@@ -29,19 +29,19 @@ export function Hero() {
           {/* Main headline - 2 lines total */}
           <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[104px] font-normal leading-[1.1] tracking-tight mb-6 sm:mb-8 font-sans">
             <span className="block text-white">
-              There's a fake Shopify store
+              Something is impersonating
             </span>
             <span className="block">
-              <span className="text-white">selling your hoodies </span>
-              <span className="text-gradient-alert">
-                right now
+              <span className="text-white">your brand. </span>
+              <span className="bg-gradient-to-r from-purple-200 via-purple-300 to-purple-200 bg-clip-text text-transparent">
+                We make it stop.
               </span>
             </span>
           </h1>
 
           {/* Subheading */}
           <p className="text-base sm:text-lg md:text-xl text-white/70 max-w-full mb-8 sm:mb-10 leading-relaxed font-extralight">
-            Someone set it up yesterday. They're using your product photos. Running Instagram ads with your logo. Your customers are clicking "Buy Now" and wondering why their order never arrives. We find them. Kill them. Before lunch.
+            We help our customers find and take down scams when someone pretends to be your brand - providing monitoring and escalation of fake stores, scam ads, and impersonation accounts who should no longer mislead your customers.
           </p>
 
           {/* CTA buttons */}
@@ -49,9 +49,9 @@ export function Hero() {
             <Link href="#contact" className="w-full sm:w-auto">
               <Button
                 size="lg"
-                className="w-full sm:w-auto bg-[#FF3B30] text-white hover:bg-[#FF3B30]/90 text-base font-medium px-6 sm:px-8 py-5 sm:py-6 h-auto rounded-md shadow-lg shadow-red-500/20"
+                className="w-full sm:w-auto bg-white text-black hover:bg-white/90 text-base font-normal px-6 sm:px-8 py-5 sm:py-6 h-auto rounded-md"
               >
-                Show me what you've found
+                Talk about Coverage
               </Button>
             </Link>
             <Link href="#learn-more" className="w-full sm:w-auto">
@@ -61,7 +61,7 @@ export function Hero() {
                 className="w-full sm:w-auto border-white/20 bg-transparent text-white hover:bg-white/5 text-base font-normal px-6 sm:px-8 py-5 sm:py-6 h-auto rounded-md"
               >
                 <PlayCircle className="mr-2 h-5 w-5" />
-                How it works
+                Learn More
               </Button>
             </Link>
           </div>
@@ -70,7 +70,7 @@ export function Hero() {
         {/* Customer logos at bottom - tighter spacing */}
         <div className="max-w-6xl pb-4 sm:pb-6">
           <p className="text-xs sm:text-sm text-white/40 mb-6 sm:mb-8 font-extralight">
-            Protected brands you actually know
+            Many more growing teams trust us to help protect their brand
           </p>
 
           <div className="flex flex-wrap items-center gap-x-8 sm:gap-x-12 md:gap-x-16 gap-y-6">
